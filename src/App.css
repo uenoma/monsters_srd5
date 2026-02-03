@@ -24,3 +24,8 @@
   align-items: flex-start;
   margin-bottom: 1rem;
 }
+
+.AppPolicy {
+  font-size: 0.6rem;
+  margin-top: 2rem;
+}

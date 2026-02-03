@@ -59,6 +59,14 @@ function App() {
               }
             </div>
           </div>
+          <div className='AppPolicy Print-None'>
+            <p>This work includes material taken from the System Reference Document 5.1 ("SRD 5.1")<br />
+              by Wizards of the Coast LLC and available at:<br />
+              <a href="https://dnd.wizards.com/resources/systems-reference-document" target="_blank" rel="noopener noreferrer">https://dnd.wizards.com/resources/systems-reference-document</a></p>
+            <p>The SRD 5.1 is licensed under the Creative Commons Attribution 4.0 International License:<br />
+              <a href="https://creativecommons.org/licenses/by/4.0/legalcode" target="_blank" rel="noopener noreferrer">https://creativecommons.org/licenses/by/4.0/legalcode</a></p>
+          </div>
+
         </div>
       } />
     </Routes>

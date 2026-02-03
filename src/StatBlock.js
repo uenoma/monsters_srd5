@@ -199,8 +199,6 @@ function StatBlock(props) {
 
       </div>
       {note()}
-
-
     </div>
   );
 }
