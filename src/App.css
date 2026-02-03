@@ -1,7 +1,6 @@
 .App {
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
+  text-align: left;
+  padding: 0.5rem;
 }
 
 .MonsterDetail {
@@ -13,9 +12,8 @@
 
 .AppBody {
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  padding: 20px;
+  justify-content: flex-start;
+  gap: 1rem;
   overflow: auto;
 }
 

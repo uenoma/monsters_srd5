@@ -43,18 +43,21 @@ function Monsters(props) {
 
   return (
     <div className="Monsters">
-      {Object.keys(filteredGrouped).sort().map(letter => (
-        <div key={letter} className="monster-group">
-          <h2>{letter}</h2>
-          <ul>
-            {filteredGrouped[letter].map(monster => (
-              <li key={monster.index}>
-                <button onClick={() => props.selectedMonsterProc(monster)}>{monster.name}</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <div className='MonstersBody'>
+        {Object.keys(filteredGrouped).sort().map(letter => (
+          <div key={letter} className="monster-group">
+            <h2>{letter}</h2>
+            <ul>
+              {filteredGrouped[letter].map(monster => (
+                <li key={monster.index}>
+                  <button onClick={() => props.selectedMonsterProc(monster)}>{monster.name}</button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+
+      </div>
     </div>
   );
 }
