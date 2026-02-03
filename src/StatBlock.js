@@ -1,9 +1,30 @@
 import './StatBlock.css';
+import { useState, useEffect } from 'react';
 
 function StatBlock(props) {
 
-  const monsterDetails = props.monsterDetails || {};
-  console.log(monsterDetails);
+  const [monsterDetails, setMonsterDetails] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (props.selectedMonster) {
+      setLoading(true);
+      fetch(`https://www.dnd5eapi.co/api/2014/monsters/${props.selectedMonster.index}`)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setMonsterDetails(data);
+          setLoading(false);
+        })
+        .catch(err => {
+          setError(err.message);
+          setLoading(false);
+        });
+    } else {
+      setMonsterDetails(null);
+    }
+  }, [props.selectedMonster]);
 
   const abilityMod = (score) => {
     const mod = Math.floor((score - 10) / 2);
@@ -72,8 +93,20 @@ function StatBlock(props) {
     return null;
   }
 
-  if (!monsterDetails.name) {
-    return <div className="StatBlock">リストから選択してください。</div>;
+  if (!props.selectedMonster) {
+    return <div className="StatBlock">クリーチャーを選択してください。</div>;
+  }
+
+  if (loading) {
+    return <div className="StatBlock">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="StatBlock">Error: {error}</div>;
+  }
+
+  if (!monsterDetails) {
+    return <div className="StatBlock">No data</div>;
   }
 
   return (

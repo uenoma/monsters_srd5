@@ -71,6 +71,7 @@
 .StatBlockBody.Right {
   border: none;
   background-color: rgb(255, 207, 198);
-  height: 100%;
+  height: auto;
+  align-self: flex-start;
 }
 

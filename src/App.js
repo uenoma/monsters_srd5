@@ -5,22 +5,7 @@ import { useState, useEffect } from 'react';
 
 function App() {
   const [selectedMonster, setSelectedMonster] = useState(null);
-  const [monsterDetails, setMonsterDetails] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-
-  useEffect(() => {
-    if (selectedMonster) {
-      fetch(`https://www.dnd5eapi.co/api/2014/monsters/${selectedMonster.index}`)
-        .then(response => response.json())
-        .then(data => {
-          console.log(data);
-          setMonsterDetails(data);
-        })
-        .catch(err => console.error(err));
-    } else {
-      setMonsterDetails(null);
-    }
-  }, [selectedMonster]);
 
   return (
     <div className="App">
@@ -33,8 +18,11 @@ function App() {
         style={{ margin: '10px', padding: '5px', width: '200px' }}
       />
       <div className="AppBody">
-        <Monsters selectedMonsterProc={setSelectedMonster} searchTerm={searchTerm}/>
-        <StatBlock monsterDetails={monsterDetails} />
+        <Monsters selectedMonsterProc={setSelectedMonster} searchTerm={searchTerm} />
+        <div className="StatBlockContainer">
+          {/* <label><input type="checkbox"></input>別ウィンドウで表示</label> */}
+          <StatBlock selectedMonster={selectedMonster} />
+        </div>
       </div>
     </div>
   );
