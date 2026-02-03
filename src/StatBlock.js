@@ -36,6 +36,33 @@ function StatBlock(props) {
     return mod;
   }
 
+  const savingThrows = () => {
+    const abilityMap = {
+      'STR': '【筋】',
+      'DEX': '【敏】',
+      'CON': '【耐】',
+      'INT': '【知】',
+      'WIS': '【判】',
+      'CHA': '【魅】'
+    };
+    if (monsterDetails.proficiencies) {
+      const saves = monsterDetails.proficiencies.filter(p => p.proficiency.name.includes('Saving Throw'));
+      return saves.map(p => {
+        const abbr = p.proficiency.name.replace('Saving Throw: ', '');
+        return (abilityMap[abbr] || abbr) + ' +' + p.value;
+      }).join(', ');
+    }
+    return '-';
+  };
+
+  const skills = () => {
+    if (monsterDetails.proficiencies) {
+      const skillList = monsterDetails.proficiencies.filter(p => p.proficiency.name.includes('Skill'));
+      return skillList.map(p => p.proficiency.name.replace('Skill: ', '') + ' +' + p.value).join(', ');
+    }
+    return '-';
+  };
+
   const damageResistances = () => {
     let result = []
 
@@ -80,6 +107,8 @@ function StatBlock(props) {
     if (monsterDetails.legendary_actions && monsterDetails.legendary_actions.length > 0) {
       return (
         <div className="StatBlockBody Right">
+          <label>伝説的アクション</label>
+          <hr></hr>
           <div className="StatBlockSpecs">
             {monsterDetails.legendary_actions.map((action, idx) => (
               <div key={idx}>
@@ -94,7 +123,7 @@ function StatBlock(props) {
   }
 
   if (!props.selectedMonster) {
-    return <div className="StatBlock">クリーチャーを選択してください。</div>;
+    return <></>;
   }
 
   if (loading) {
@@ -125,11 +154,11 @@ function StatBlock(props) {
 
         <div className="StatBlockSpecs">
           <li><label>AC:</label>{monsterDetails.armor_class ? monsterDetails.armor_class[0].value : ''} {monsterDetails.armor_class && monsterDetails.armor_class[0].type ? "（" + monsterDetails.armor_class[0].type + "）" : ""}</li>
-          <li><label>hp:</label>{monsterDetails.hit_points} {"（" + monsterDetails.hit_dice + "）"}</li>
+          <li><label>hp:</label>{monsterDetails.hit_points} {"（" + monsterDetails.hit_points_roll + "）"}</li>
           <li><label>移動速度:</label>{Object.entries(monsterDetails.speed).map(([key, value]) => `${key === 'walk' ? '' : key + ' '}${value} `).join(', ')}</li>
         </div>
 
-        <hr></hr>
+        <hr className="thin-hr"></hr>
 
         <div className="StatBlockAbilitys">
           <li><label>【筋】</label><br></br>{monsterDetails.strength} {"(" + abilityMod(monsterDetails.strength) + ")"}</li>
@@ -140,10 +169,11 @@ function StatBlock(props) {
           <li><label>【魅】</label><br></br>{monsterDetails.charisma} {"(" + abilityMod(monsterDetails.charisma) + ")"}</li>
         </div>
 
-        <hr></hr>
+        <hr className="thin-hr"></hr>
 
         <div className="StatBlockSpecs">
-          <li><label>技能:</label>{monsterDetails.proficiencies ? monsterDetails.proficiencies.map(p => p.proficiency.name + ' +' + p.value).join(', ') : '-'}</li>
+          {savingThrows() && savingThrows() !== '-' && <li><label>セーヴ:</label>{savingThrows()}</li>}
+          {skills() && skills() !== '-' && <li><label>技能:</label>{skills()}</li>}
           {damageResistances()}
           <li><label>感覚:</label>{monsterDetails.senses ? Object.entries(monsterDetails.senses).map(([key, value]) => `${key} ${value}`).join(', ') : "-"}</li>
           <li><label>言語:</label>{monsterDetails.languages ? monsterDetails.languages : "-"}</li>
@@ -161,7 +191,7 @@ function StatBlock(props) {
         </div>
 
         <label>アクション</label>
-        <hr></hr>
+        <hr className="thin-hr"></hr>
 
         <div className="StatBlockSpecs">
           {monsterDetails.actions ? monsterDetails.actions.map((action, idx) => (
@@ -170,6 +200,20 @@ function StatBlock(props) {
             </p>
           )) : null}
         </div>
+
+        {monsterDetails.reactions && monsterDetails.reactions.length > 0 && (
+          <>
+            <label>リアクション</label>
+            <hr className="thin-hr"></hr>
+            <div className="StatBlockSpecs">
+              {monsterDetails.reactions.map((reaction, idx) => (
+                <p key={idx}>
+                  <strong>{reaction.name}:</strong> {reaction.desc}
+                </p>
+              ))}
+            </div>
+          </>
+        )}
 
       </div>
       {note()}

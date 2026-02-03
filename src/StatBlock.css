@@ -7,10 +7,10 @@
 }
 
 .StatBlockBody {
-  margin: 1mm;
+  margin: 1.5mm;
   padding: 3mm;
   border: solid 1px #ccc;
-  width: 90mm;
+  width: 85mm;
   background-color: antiquewhite;
   height: auto;
 
@@ -29,14 +29,18 @@
 .StatBlock label {
   font-weight: bold;
   margin-right: 2mm;
+  margin-top: 0.5rem;
 }
 
 .StatBlock hr {
   background: linear-gradient(to right, rgb(133, 32, 32), white);
   height: 2px;
   width: 100%;
+  margin: 0.3rem 0 0.3rem 0;
 }
-
+.StatBlock hr.thin-hr {
+  height: 1px;
+}
 .StatBlockHeader {
   font-size: 1.2em;
   font-weight: bold;
@@ -56,8 +60,9 @@
   flex-direction: column;
   font-size: 0.7em;
 }
+
 .StatBlockSpecs p {
-   margin: 0.2em 0px;
+  margin: 0.2em 0px;
 }
 
 .StatBlockAbilitys {
@@ -73,5 +78,12 @@
   background-color: rgb(255, 207, 198);
   height: auto;
   align-self: flex-start;
+  width: 85mm;
+}
+
+@media print {
+  @page {
+    margin: 5mm;
+  }
 }
 
