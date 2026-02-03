@@ -1,0 +1,40 @@
+.Monsters {
+  padding: 20px;
+}
+
+.monster-group {
+  margin-bottom: 20px;
+}
+
+.monster-group h2 {
+  color: #333;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 5px;
+  text-align: left;
+}
+
+.monster-group ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.monster-group li {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.monster-group button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  text-align: left;
+  width: 100%;
+  padding: 0;
+}
+
+.monster-group button:hover {
+  color: #007bff;
+}

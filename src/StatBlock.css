@@ -1,0 +1,76 @@
+.StatBlock {
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  height: auto;
+  align-self: flex-start;
+}
+
+.StatBlockBody {
+  margin: 1mm;
+  padding: 3mm;
+  border: solid 1px #ccc;
+  width: 90mm;
+  background-color: antiquewhite;
+  height: auto;
+
+  break-before: always;
+  break-after: always;
+  page-break-before: always;
+  page-break-after: always;
+}
+
+.StatBlock li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.StatBlock label {
+  font-weight: bold;
+  margin-right: 2mm;
+}
+
+.StatBlock hr {
+  background: linear-gradient(to right, rgb(133, 32, 32), white);
+  height: 2px;
+  width: 100%;
+}
+
+.StatBlockHeader {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+
+.StatBlockHeaderInfo {
+  display: flex;
+  flex-direction: row;
+  font-style: italic;
+  font-size: 0.5em;
+  color: #666;
+}
+
+.StatBlockSpecs {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7em;
+}
+.StatBlockSpecs p {
+   margin: 0.2em 0px;
+}
+
+.StatBlockAbilitys {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 0.8em;
+  margin-top: 1em;
+}
+
+.StatBlockBody.Right {
+  border: none;
+  background-color: rgb(255, 207, 198);
+  height: 100%;
+}
+
