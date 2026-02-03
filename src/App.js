@@ -55,7 +55,7 @@ function App() {
             <div className="StatBlockContainer">
               <StatBlock selectedMonster={selectedMonster} />
               {selectedMonster &&
-                <button onClick={() => window.open(`/monster/${selectedMonster.index}`, '_blank')}>印刷用に別ウィンドウで表示</button>
+                <button onClick={() => window.open(`#/monster/${selectedMonster.index}`, '_blank')}>印刷用に別ウィンドウで表示</button>
               }
             </div>
           </div>
