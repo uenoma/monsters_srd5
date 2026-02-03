@@ -1,6 +1,6 @@
 .StatBlock {
   display: flex;
-  flex-direction: row;
+  flex-wrap: wrap;
   text-align: left;
   height: auto;
   align-self: flex-start;

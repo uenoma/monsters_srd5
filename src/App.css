@@ -1,5 +1,14 @@
 .App {
   text-align: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+.MonsterDetail {
+  padding: 20px;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .AppBody {
@@ -7,6 +16,7 @@
   justify-content: center;
   gap: 40px;
   padding: 20px;
+  overflow: auto;
 }
 
 .StatBlockContainer {
