@@ -67,40 +67,22 @@ function StatBlock(props) {
     let result = []
 
     if (monsterDetails.damage_vulnerabilities && monsterDetails.damage_vulnerabilities.length > 0) {
-      result.push(<li><label>ダメージ脆弱性：</label>{monsterDetails.damage_vulnerabilities.join(', ')}</li>);
+      result.push(<li><label>ダメージ脆弱性:</label>{monsterDetails.damage_vulnerabilities.join(', ')}</li>);
     }
 
     if (monsterDetails.damage_resistances && monsterDetails.damage_resistances.length > 0) {
-      result.push(<li><label>ダメージ抵抗：</label>{monsterDetails.damage_resistances.join(', ')}</li>);
+      result.push(<li><label>ダメージ抵抗:</label>{monsterDetails.damage_resistances.join(', ')}</li>);
     }
 
     if (monsterDetails.damage_immunities && monsterDetails.damage_immunities.length > 0) {
-      result.push(<li><label>ダメージ完全耐性：</label>{monsterDetails.damage_immunities.join(', ')}</li>);
+      result.push(<li><label>ダメージ完全耐性:</label>{monsterDetails.damage_immunities.join(', ')}</li>);
     }
 
     if (monsterDetails.condition_immunities && monsterDetails.condition_immunities.length > 0) {
-      result.push(<li><label>状態完全耐性：</label>{monsterDetails.condition_immunities.map(ci => ci.name).join(', ')}</li>);
+      result.push(<li><label>状態完全耐性:</label>{monsterDetails.condition_immunities.map(ci => ci.name).join(', ')}</li>);
     }
 
     return result
-  }
-
-  const parseStrings = (str) => {
-    if (!str) return null;
-    return str.split('\n').map((line, idx) => {
-      const sepIndex = line.indexOf('：');
-      if (sepIndex !== -1) {
-        const label = line.slice(0, sepIndex + 1);
-        const value = line.slice(sepIndex + 1);
-        return (
-          <div key={idx}>
-            <label>{label}</label>{value}
-          </div>
-        );
-      } else {
-        return <div key={idx}>{line}</div>;
-      }
-    });
   }
 
   const note = () => {
